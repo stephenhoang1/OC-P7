@@ -1,0 +1,26 @@
+.header {
+  margin: 30px;
+}
+
+.container {
+  margin: 20px;
+}
+
+.col-sm-7  {
+  border: solid black 1px;
+}
+
+#map {
+  height: 60vh;
+}
+
+#restaurants {
+  overflow: scroll;
+}
+
+.listing {
+  height: 90px;
+  border-bottom-style: ridge;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
