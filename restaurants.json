@@ -1,0 +1,41 @@
+[
+   {
+      "restaurantName":"Anita's Cantina",
+      "image":"https://media-cdn.tripadvisor.com/media/photo-s/0f/b7/d6/40/handmade-chips.jpg",
+      "address":"36 Phố Quảng Bá, Quảng An, Tây Hồ, Hà Nội, Vietnam",
+      "cusine":"Mexican",
+      "priceRange":"$$",
+      "lat": 21.065397006132635,
+      "long": 105.82235818728807,
+      "ratings":[
+         {
+            "stars":5,
+            "comment":"Delicious! But not many veggie options."
+         },
+         {
+            "stars":5,
+            "comment":"That was the best meal I have ever had. And I'm British."
+         }
+      ]
+   },
+   {
+      "restaurantName":"Phở Sướng",
+      "image":"https://media-cdn.tripadvisor.com/media/daodao/photo-s/0a/1b/2d/5b/pho-suong.jpg",
+      "address":"36B Mai Hắc Đế, Bùi Thị Xuân, Hai Bà Trưng, Hà Nội, Vietnam",
+      "cusine":"Vietnamese",
+      "priceRange":"$",
+      "lat": 21.015653961695403,
+      "long": 105.85087895393373,
+      "ratings":[
+         {
+            "stars":1,
+            "comment":"My granny could make better pho than this!"
+         },
+         {
+            "stars":1,
+            "comment":"This was a terrible pho."
+         }
+      ]
+   }
+
+]
