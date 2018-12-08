@@ -1,4 +1,17 @@
+/* mobile */
 @media only screen and (max-width: 768px) {
+
+  /* Jumbotron */
+
+  body > div.card.card-image > div > img {
+    width: 70px;
+  }
+
+  /* logo */
+
+  body>.card {
+    padding: 40px;
+  }
 
   body>div.card.card-image > div > i {
     font-size: 40px;
@@ -9,49 +22,46 @@
     font-size: 20px;
   }
 
-  .map-container {
-    display: none;
-  }
-
-  #restaurants, .header {
-    display: block;
-  }
-
-  .listings {
-    border: 1px solid black;
-  }
+  /* header */
 
   .header {
     margin: 5px;
   }
 
   .header>h1 {
-    font-size: 30px;
+    font-size: 20px;
   }
 
-  .view-options-toggler {
-    display: block;
+  /* map */
+
+  .map-container {
+    /* display: none; */
+    border: none;
+    max-height: 300px;
+
   }
 
-  body>.card {
-    padding: 10px;
+  /* listing */
+
+  #restaurants  {
+    /* display: block; */
+    overflow: hidden;
+    background-color: white;
+    /* max-height: 260px; */
+
   }
 
-  body > div.card.card-image > div > img {
-    width: 70px;
+.header {
+  display: none;
+}
+
+  .listings {
+    border: 1px solid black;
   }
 
 
 }
 
-@media only screen and (min-width: 768px) {
-  .view-options-toggler {
-    display: none;
-  }
-
-
-
-}
 
 .header {
   margin: 30px;
@@ -76,11 +86,7 @@
 
 .map-container {
   height: 600px;
-  border: solid black 1px;
-}
-
-#restaurants {
-  overflow: hidden;
+  background-color: white;
 }
 
 .listing {
@@ -119,6 +125,15 @@
   flex: 1;
   padding: 10px;
 }
+
+.infoWindow {
+  border: none;
+}
+
+.listing-address {
+  width: 100px;
+}
+
 
 .card {
   padding: 50px;
@@ -180,4 +195,100 @@ div.card.card-image > div > i {
 body > div.card.card-image > div > div.input-group.md-form.form-sm.form-1.pl-0 > input {
   color: black;
   background-color: white
+}
+
+/* .modal-content * {
+  border: 1px solid black;
+} */
+
+.modal-image-info {
+  height: 400px;
+}
+
+.modal-rest-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.m-opening-reviews {
+  height: inherit;
+  overflow: visible;
+}
+
+.opening-times>p {
+  float: right;
+  padding-right: 40px;
+
+}
+
+.opening-times {
+  border-right: 1px solid black;
+  margin-top:10px;
+}
+
+/* .name-cusine-address {
+  border-bottom: 1px solid black;
+} */
+
+#opening-times-heading, #reviews-heading {
+  margin:30px;
+}
+
+.modal-dialog {
+  height: auto; /* = 90% of the .modal-backdrop block = %90 of the screen */
+}
+.modal-content {
+  height: 100%; /* = 100% of the .modal-dialog block */
+}
+
+#review>* {
+  padding: 5px;
+}
+
+.name {
+  font-size: 12px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-review {
+  height: 80px;
+}
+
+#address {
+  list-style: none;
+  padding: 0;
+}
+
+#review-button {
+  margin: 0
+}
+
+hr {
+    display: block;
+    margin-before: 0.5em;
+    margin-after: 0.5em;
+    margin-start: auto;
+    margin-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    border-top: 1px solid black;
+}
+
+.m-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

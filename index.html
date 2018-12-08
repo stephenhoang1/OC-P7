@@ -20,6 +20,10 @@
 
   <body>
 
+
+
+
+
     <!-- Jumbotron -->
     <div class="card card-image">
 
@@ -30,70 +34,185 @@
 
     </div>
     <!-- Jumbotron -->
-    <div class="view-options-toggler">
-      <div class="view-options">
 
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="list-button btn btn-secondary btn-block active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> List
-          </label>
-          <label class="map-button btn btn-block btn-secondary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Map
-          </label>
-        </div>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg ">
+          <div class="modal-content">
+
+            <div class="container">
+              <div class="modal-image-info row p-5">
+
+                <div class="col-6 m-img p-2">
+                  <img class="img-fluid" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/43582708_658115837905041_640584291910156288_n.jpg?_nc_cat=102&_nc_ht=scontent-lht6-1.xx&oh=42d0a2c089d1b440f2291b2a028ad96d&oe=5CAB9B51" alt="">
+                </div>
+                <div class="name-cusine-address col-6 modal-rest-info p-5">
+
+                    <div class="m-rest-info">
+                      <h1>Anitas Cantina</h1>
+                      <div class="stars">
+                        <i class="fa-star fas"></i>
+                        <i class="fa-star fas"></i>
+                        <i class="fa-star fas"></i>
+                        <i class="fa-star fas"></i>
+                        <i class="fa-star fas"></i>
+                        <span class="bullet">&bull;</span>
+                        <span>43 reviews</span>
+                      </div>
+                      <div class="price-cusine">
+                        <span>$$</span>
+                        <span class="bullet">&bull;</span>
+                        <span>Mexican</span>
+                      </div>
+                      <div class="address-container pt-3">
+                        <ul id="address">
+                          <li>12 Trimble Street</li>
+                          <li>Deansgate</li>
+                          <li>Manchester</li>
+                        </ul>
+                      </div>
+
+                    </div>
+
+                    <div>
+                      <button type="button" id="review-button" class="btn btn-outline-primary btn-rounded waves-effect">Write a Review</button>
+                    </div>
+                </div>
+
+              </div>
+              <hr>
+            </div>
+
+            <div class="container">
+              <div class="m-opening-reviews row">
+
+                <div class="col-4 opening-times">
+                  <h4 id="opening-times-heading" class="text-center">Opening Times</h4>
+                  <p>Monday 11am–11pm</p>
+                  <p>Tuesday 11am–11pm</p>
+                  <p>Wednesday 11am–11pm</p>
+                  <p>Thursday 11am–11pm</p>
+                  <p>Friday 11am–11pm</p>
+                  <p>Saturday 11am–11pm</p>
+                  <p>Sunday 11am–11pm</p>
+                </div>
+
+                <div class="col-8 reviews">
+                  <div class="container">
+                    <h3 id="reviews-heading" class="text-center">Reviews</h3>
+                    <div class="row user-review">
+                      <div class="user col-3">
+                        <div class="name">Stephen Hoang</div>
+                      </div>
+                      <div id="review" class="col-9">
+                        <div class="stars">
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                        </div>
+                        <p>Delicious! But not many veggie options.</p>
+                      </div>
+                    </div>
+                    <div class="row user-review">
+                      <div class="user col-3">
+                        <div class="name">Stephen Hoang</div>
+                      </div>
+                      <div id="review" class="col-9">
+                        <div class="stars">
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                        </div>
+                        <p>Delicious! But not many veggie options.</p>
+                      </div>
+                    </div>
+                    <div class="row user-review">
+                      <div class="user col-3">
+                        <div class="name">Stephen Hoang</div>
+                      </div>
+                      <div id="review" class="col-9">
+                        <div class="stars">
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                        </div>
+                        <p>Delicious! But not many veggie options.</p>
+                      </div>
+                    </div>
+                    <div class="row user-review">
+                      <div class="user col-3">
+                        <div class="name">Stephen Hoang</div>
+                      </div>
+                      <div id="review" class="col-9">
+                        <div class="stars">
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                        </div>
+                        <p>Delicious! But not many veggie options.</p>
+                      </div>
+                    </div>
+                    <div class="row user-review">
+                      <div class="user col-3">
+                        <div class="name">Stephen Hoang</div>
+                      </div>
+                      <div id="review" class="col-9">
+                        <div class="stars">
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                          <i class="fa-star fas"></i>
+                        </div>
+                        <p>Delicious! But not many veggie options.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+            </div>
+
+
 
       </div>
     </div>
 
+</div>
 
     <div class="header">
-      <h1 class="text-center">Closest restaurants to you in <span id="city"></span>, <span id="country">some country</span></h1>
+      <h1 class="text-center">Closest restaurants to you in <span id="city_and_country"></span></h1>
     </div>
-
 
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="map-container col-lg-6 col-md-7 col-sm-12 sticky-top">
+        <div class="map-container col-lg-6 col-md-7 col-sm-12 sticky-top py-3">
           <div id="map"></div>
         </div>
 
         <div id="restaurants" class="col-lg-4 col-md-4 col-sm-8 col-xs-10">
-
-          <div class="listing">
-            <div class="listing-avatar">
-              <img src="https://bluewater.co.uk/sites/bluewater/files/styles/whats_on_gallery_large/public/images/shops/gallery/nandos4.jpg?itok=chx3a6Ju" alt="">
-            </div>
-            <div class="listing-info">
-              <div class="listing-title"></div>
-
-              <div class="reviews">
-                <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                  <i class="far fa-star"></i>
-                </div>
-                <span class="bullet">&bull;</span>
-                <p>53 reviews</p>
-
-              </div>
-
-              <span class="listing-price">$$</span>
-              <span class="bullet">•</span>
-              <span class="listing-cusine">Polish</span>
-            </div>
-          </div>
-
-
-
-
         </div>
       </div>
     </div>
 
+    <div class="container">
+      <h2>Large Modal</h2>
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+
     <!-- Footer -->
-    <footer class="page-footer font-small unique-color-dark">
+  <footer class="page-footer font-small unique-color-dark">
 
     <div style="background-color: #6351ce;">
       <div class="container">
@@ -237,6 +356,7 @@
 
 
 
+
     <!-- Optional JavaScript -->
 
 
@@ -244,11 +364,13 @@
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="script.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYCjYphLuqFOStfAi-HJf8bV8wLncI6I4&callback=initMap">
+    </script>
 
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYCjYphLuqFOStfAi-HJf8bV8wLncI6I4&callback=initMap">
-</script>
+    <script type="text/javascript" src="script.js"></script>
+
+
 
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
