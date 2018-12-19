@@ -1,4 +1,5 @@
-[{
+[
+	{
 		"restaurantName": "Anitas Cantina",
 		"image": "https://media-cdn.tripadvisor.com/media/photo-s/0f/b7/d6/40/handmade-chips.jpg",
 		"address": "36 Phố Quảng Bá, Quảng An, Tây Hồ, Hà Nội, Vietnam",
@@ -7,16 +8,20 @@
 		"lat": 21.065397006132635,
 		"long": 105.82235818728807,
 		"ratings": [{
-				"stars": 1,
+				"stars": 5,
 				"comment": "Delicious! But not many veggie options."
 			},
 			{
-				"stars": 1,
+				"stars": 5,
 				"comment": "That was the best meal I have ever had. And I'm British."
 			},
 			{
-				"stars": 1,
+				"stars": 2,
 				"comment": "Wow! it was ok"
+			},
+			{
+				"stars": 5,
+				"comment": "What a potato!"
 			}
 		]
 	},
@@ -57,7 +62,7 @@
 		]
 	},
 	{
-		"restaurantName": "Cô Tuân - Hủ Tiếu & Bún Bò Nam Bộ",
+		"restaurantName": "Cô Tuân",
 		"image": "https://images.foody.vn/res/g5/47223/s180x180/foody-checkin-co-tuan-bun-bo-hu-tiu-xa-xiu-chien-906-636149196343820341.jpg",
 		"address": "49C Trần Quốc Toản,  Quận Hoàn Kiếm, Hà Nội",
 		"cusine": "Vietnamese",

@@ -147,8 +147,18 @@ div.card.card-image > div > i {
 
 .reviews {
   display: flex;
+  flex-direction:column;
+  height:20px;
+
+}
+
+.review-avg {
+  display: flex;
+  /* flex-direction:column; */
   height:20px;
 }
+
+
 
 .bullet {
   padding-left: 6px;
@@ -201,38 +211,45 @@ body > div.card.card-image > div > div.input-group.md-form.form-sm.form-1.pl-0 >
   border: 1px solid black;
 } */
 
-.modal-image-info {
-  height: 400px;
+.m-row-1 {
+  height: 350px;
 }
 
-.modal-rest-info {
+.m-rest-info-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.m-opening-reviews {
+.m-row-2 {
   height: inherit;
-  overflow: visible;
+  overflow: scroll;
 }
 
 .opening-times>p {
   float: right;
-  padding-right: 40px;
+  padding-right: 30px;
 
 }
 
 .opening-times {
   border-right: 1px solid black;
-  margin-top:10px;
 }
 
-/* .name-cusine-address {
-  border-bottom: 1px solid black;
-} */
 
-#opening-times-heading, #reviews-heading {
-  margin:30px;
+#reviews-heading {
+  margin:20px;
+  font-weight: bold;
+}
+
+#opening-times-heading {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+#m-rest-name {
+  font-weight: bold;
 }
 
 .modal-dialog {
@@ -242,7 +259,15 @@ body > div.card.card-image > div > div.input-group.md-form.form-sm.form-1.pl-0 >
   height: 100%; /* = 100% of the .modal-dialog block */
 }
 
-#review>* {
+#modal-trigger {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.review>* {
   padding: 5px;
 }
 
@@ -263,7 +288,9 @@ body > div.card.card-image > div > div.input-group.md-form.form-sm.form-1.pl-0 >
 }
 
 .user-review {
-  height: 80px;
+  padding: 10px;
+  border-bottom: 1px solid #e7dbdb;
+  border-length: 80%;
 }
 
 #address {
@@ -287,8 +314,21 @@ hr {
     border-top: 1px solid black;
 }
 
-.m-img {
+/* .m-img-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center;  */
+/* } */
+
+#m-img {
+  display: block;
+  max-width: 352px;
+  max-height: 304px;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+.address-container {
+  width:150px
 }

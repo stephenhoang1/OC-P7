@@ -20,10 +20,6 @@
 
   <body>
 
-
-
-
-
     <!-- Jumbotron -->
     <div class="card card-image">
 
@@ -35,48 +31,48 @@
     </div>
     <!-- Jumbotron -->
 
+    <!-- Trigger the modal with a button -->
+    <button id="modal-trigger" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg ">
+        <div class="modal-dialog modal-lg">
+
           <div class="modal-content">
-
             <div class="container">
-              <div class="modal-image-info row p-5">
 
-                <div class="col-6 m-img p-2">
-                  <img class="img-fluid" src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/43582708_658115837905041_640584291910156288_n.jpg?_nc_cat=102&_nc_ht=scontent-lht6-1.xx&oh=42d0a2c089d1b440f2291b2a028ad96d&oe=5CAB9B51" alt="">
+              <div class="m-row-1 row p-5">
+                <div class="col-6 m-img-wrapper p-2">
+                  <img class="img-responsive" id="m-img" src="" alt="">
                 </div>
-                <div class="name-cusine-address col-6 modal-rest-info p-5">
+                <div class="m-rest-info-wrapper ol-6 p-3">
 
-                    <div class="m-rest-info">
-                      <h1>Anitas Cantina</h1>
-                      <div class="stars">
-                        <i class="fa-star fas"></i>
-                        <i class="fa-star fas"></i>
-                        <i class="fa-star fas"></i>
-                        <i class="fa-star fas"></i>
-                        <i class="fa-star fas"></i>
-                        <span class="bullet">&bull;</span>
-                        <span>43 reviews</span>
-                      </div>
-                      <div class="price-cusine">
-                        <span>$$</span>
-                        <span class="bullet">&bull;</span>
-                        <span>Mexican</span>
-                      </div>
-                      <div class="address-container pt-3">
-                        <ul id="address">
-                          <li>12 Trimble Street</li>
-                          <li>Deansgate</li>
-                          <li>Manchester</li>
-                        </ul>
-                      </div>
+                  <div class="m-rest-info">
+                    <h4 id="m-rest-name"></h4>
+
+                    <div class="wrapper">
+
+                    <div id="m-stars" class="stars"></div>
+                      <span class="bullet">&bull;</span>
+                      <span id="m-number-of-reviews"></span>
 
                     </div>
 
-                    <div>
-                      <button type="button" id="review-button" class="btn btn-outline-primary btn-rounded waves-effect">Write a Review</button>
+
+
+                    <div class="price-cusine">
+                      <span id="m-price"></span>
+                      <span class="bullet">&bull;</span>
+                      <span id="m-cusine"></span>
                     </div>
+                    <div id="m-address" class="address-container py-3">
+                    </div>
+
+                  </div>
+
+                  <div>
+                    <button type="button" id="review-button" class="btn btn-outline-primary btn-rounded waves-effect">Write a Review</button>
+                  </div>
                 </div>
 
               </div>
@@ -84,9 +80,8 @@
             </div>
 
             <div class="container">
-              <div class="m-opening-reviews row">
-
-                <div class="col-4 opening-times">
+              <div class="m-row-2 row">
+                <div class="col-4 opening-times sticky-top">
                   <h4 id="opening-times-heading" class="text-center">Opening Times</h4>
                   <p>Monday 11am–11pm</p>
                   <p>Tuesday 11am–11pm</p>
@@ -98,98 +93,17 @@
                 </div>
 
                 <div class="col-8 reviews">
-                  <div class="container">
-                    <h3 id="reviews-heading" class="text-center">Reviews</h3>
-                    <div class="row user-review">
-                      <div class="user col-3">
-                        <div class="name">Stephen Hoang</div>
-                      </div>
-                      <div id="review" class="col-9">
-                        <div class="stars">
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                        </div>
-                        <p>Delicious! But not many veggie options.</p>
-                      </div>
-                    </div>
-                    <div class="row user-review">
-                      <div class="user col-3">
-                        <div class="name">Stephen Hoang</div>
-                      </div>
-                      <div id="review" class="col-9">
-                        <div class="stars">
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                        </div>
-                        <p>Delicious! But not many veggie options.</p>
-                      </div>
-                    </div>
-                    <div class="row user-review">
-                      <div class="user col-3">
-                        <div class="name">Stephen Hoang</div>
-                      </div>
-                      <div id="review" class="col-9">
-                        <div class="stars">
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                        </div>
-                        <p>Delicious! But not many veggie options.</p>
-                      </div>
-                    </div>
-                    <div class="row user-review">
-                      <div class="user col-3">
-                        <div class="name">Stephen Hoang</div>
-                      </div>
-                      <div id="review" class="col-9">
-                        <div class="stars">
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                        </div>
-                        <p>Delicious! But not many veggie options.</p>
-                      </div>
-                    </div>
-                    <div class="row user-review">
-                      <div class="user col-3">
-                        <div class="name">Stephen Hoang</div>
-                      </div>
-                      <div id="review" class="col-9">
-                        <div class="stars">
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                          <i class="fa-star fas"></i>
-                        </div>
-                        <p>Delicious! But not many veggie options.</p>
-                      </div>
-                    </div>
+                  <h3 id="reviews-heading" class="text-center">Reviews</h3>
+                  
+                  <div id="m-reviews-container" class="container">
                   </div>
                 </div>
-
-
-
-
               </div>
             </div>
 
-
-
       </div>
-    </div>
-
-</div>
+        </div>
+      </div>
 
     <div class="header">
       <h1 class="text-center">Closest restaurants to you in <span id="city_and_country"></span></h1>
@@ -206,10 +120,7 @@
       </div>
     </div>
 
-    <div class="container">
-      <h2>Large Modal</h2>
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
+
 
     <!-- Footer -->
   <footer class="page-footer font-small unique-color-dark">
