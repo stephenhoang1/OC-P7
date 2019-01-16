@@ -332,3 +332,16 @@ hr {
 .address-container {
   width:150px
 }
+
+.filter {
+ display: flex;
+}
+
+.add-review-modal {
+  background-color: red;
+  /* height: 500px; */
+}
+
+#price-wrapper {
+  margin-bottom: 15px;
+}
