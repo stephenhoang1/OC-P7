@@ -1,72 +1,125 @@
-
 var map, infoWindow;
 var markersArray = [];
+var newRestData = [];
+var tempRestArray = []
 
 // create map
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
-        zoom: 13
+        zoom: 14
       });
       infoWindow = new google.maps.InfoWindow;
 
-      // Try HTML5 geolocation.
+// Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
+          var currentLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
 
-          // addMarker(pos, "green");
-
-          infoWindow.setPosition(pos);
-
-          var hanoi = {
-            lat: 21.022151,
-            lng: 105.835708
-          }
-
-          infoWindow.setPosition(hanoi);
+          infoWindow.setPosition(currentLocation);
           infoWindow.setContent('You are here');
           infoWindow.open(map);
-          map.setCenter(hanoi);
-
-          // service = new google.maps.places.PlacesService(map);
-          // service.nearbySearch(request, callback);
-          //
-          //     var request = {
-          //       location: hanoi,
-          //       radius: '1000',
-          //       type: ['restaurant']
-          //     };
-          //
-          //     service = new google.maps.places.PlacesService(map);
-          //     service.nearbySearch(request, callback);
-          //
-          //
-          //   function callback(results, status) {
-          //     if (status == google.maps.places.PlacesServiceStatus.OK) {
-          //       console.log("places loaded")
-          //       console.log(results)
-          //     }
-          //   }
-
-          // make
-
-          // google.maps.event.addListener(map, 'idle', function() {
-          //   // get bounds
-          //   var bounds =  map.getBounds();
-          //   var ne = bounds.getNorthEast();
-          //   var sw = bounds.getSouthWest();
-          //   // console.log(ne)
-          //
-          // })
+          var locationCenter = map.getCenter()
+          map.setCenter(locationCenter);
 
 
 
+// START REVERSE GEOCODE TO GET THE CITY AND COUNTRY
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({'location': currentLocation}, function(results, status) {
+          if (status === 'OK') {
+
+          var city = document.getElementById('city')
+          var country = document.getElementById('country')
+
+          city.innerHTML = results[0].address_components[3].long_name
+          country.innerHTML = results[0].address_components[5].long_name
+
+        } else {
+              window.alert('No results found');
+            }
+          })
+
+// START OF GOOGLE PLACES API LOAD
+var mapCenter = map.getCenter()
+
+  // nearby search
+        var request = {
+          location: mapCenter,
+          radius: '1000',
+          type: ['restaurant']
+        };
+
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, callback);
+
+      function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
 
 
+    // for each returned place using nearby search request...
+          for (x in results) {
+
+    // make a places request to return these fields
+            var placesRequest = {
+            placeId: results[x].place_id,
+            fields: ['name', 'photo', 'vicinity', 'rating', 'geometry', 'review', 'price_level', 'place_id']
+            };
+
+            service.getDetails(placesRequest, callback);
+
+            function callback(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+      // populate reviews array with review results
+            function genReviews() {
+              for (var x = 0; x < place.reviews.length; x++) {
+                var review = {
+                  user_photo: place.reviews[x].profile_photo_url,
+                  stars: place.reviews[x].rating,
+                  comment: place.reviews[x].text
+                }
+                newRestaurant.ratings.push(review)
+              }
+            }
+
+      // create new restaurant and add it to the global restaurants array
+              var newRestaurant = {
+                id: place.place_id,
+                restaurantName: place.name,
+                image: "https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto,w_300,h_216,c_fit,fl_strip_profile/https://s3.amazonaws.com/pixtruder/original_images/256bcd631df0a49d24b03a30cad403298c93f6f0",
+            		address: place.vicinity,
+            		cusine: "Vietnamese", //Placeholders
+            		priceRange: "$", //Placeholders
+                lat:  place.geometry.location.lat(),
+                long: place.geometry.location.lng(),
+                average: place.rating,
+            		ratings: []
+              }
+              genReviews()
+
+              newRestData.push(newRestaurant)
+
+              if (!globalRestaurants.includes(newRestaurant)) {
+                globalRestaurants.push(newRestaurant)
+              }
+
+              }
+            }
+
+          }
+
+        }
+
+      }
+
+ //END OF MAKE PLACES function
+
+// END OF GOOGLE PLACES API LOAD
 
         }, function() {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -76,28 +129,129 @@ var markersArray = [];
         handleLocationError(false, infoWindow, map.getCenter());
       }
 
-      // EXECUTE GOOGLE PLACES API
-      // service = new google.maps.places.PlacesService(map);
-      // service.nearbySearch(request, callback);
+
+// make temporary resaurant array to use to update listings when dragging map
+      function makeTempRestArray(restData) {
+        tempRestArray = []
+        for (var i=0; i<restData.length; i++) {
+          if( map.getBounds().contains({lat: restData[i].lat, lng: restData[i].long})) {
+            tempRestArray.push(restData[i])
+          }
+        }
 
 
+    // tempRestArray = Array.from(new Set(tempRestArray))
+    // return tempRestArray
+
+        createListings(tempRestArray)
+      }
 
       onInit()
 
+        setTimeout(
+          function() {
+            makeTempRestArray(globalRestaurants)
+          }, 4000);
 
-
-      // create new rest array on changing of map
+        // create new rest array on changing of map
       google.maps.event.addListener(map, 'idle', function() {
 
-        var tempRestArray = [];
-        for (var i=0; i<globalRestaurants.length; i++) {
-          // console.log('looping through globalRestaurants...')
-          if( map.getBounds().contains({lat: globalRestaurants[i].lat, lng: globalRestaurants[i].long})) {
-            tempRestArray.push(globalRestaurants[i])
+      var mapCentertwo = map.getCenter()
+      // infoWindow.setPosition(mapCenter);
+      // infoWindow.setContent('You are here');
+
+      // nearby search
+            var request = {
+              location: mapCentertwo,
+              radius: '1000',
+              type: ['restaurant']
+            };
+
+            // service = new google.maps.places.PlacesService(map)
+            service.nearbySearch(request, callback);
+
+
+          function callback(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+
+        // for each returned place using nearby search request...
+              for (x in results) {
+
+        // make a places request to return these fields
+                var placesRequest = {
+                placeId: results[x].place_id,
+                fields: ['name', 'photo', 'vicinity', 'rating', 'geometry', 'review', 'price_level', 'place_id']
+                };
+
+                service.getDetails(placesRequest, callback);
+
+                function callback(place, status) {
+                if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+
+
+          // populate reviews array with review results
+                function genReviews() {
+                  for (var x = 0; x < place.reviews.length; x++) {
+                    var review = {
+                      user_photo: place.reviews[x].profile_photo_url,
+                      stars: place.reviews[x].rating,
+                      comment: place.reviews[x].text
+                    }
+                    newRestaurant.ratings.push(review)
+                  }
+                }
+
+          // create new restaurant and add it to the global restaurants array
+                  var newRestaurant = {
+                    id: place.place_id,
+                    restaurantName: place.name,
+                    image: place.photos[0].getUrl(),
+                		address: place.vicinity,
+                		cusine: "Vietnamese", //Placeholders
+                		priceRange: "$", //Placeholders
+                    lat:  place.geometry.location.lat(),
+                    long: place.geometry.location.lng(),
+                    average: place.rating,
+                		ratings: []
+                  }
+                  genReviews()
+
+                  newRestData.push(newRestaurant)
+
+                  if (!globalRestaurants.includes(newRestaurant)) {
+                    globalRestaurants.push(newRestaurant)
+                  } else {
+                    console.log("already here!")
+                  }
+                  }
+                }
+
+              }
+
+            }
+
           }
-        }
-        createListings(tempRestArray)
+
+// I'm going to make a new set, and...
+// I want to turn it back into an array with Array.from so that I can later re-map it.
+const uniqueRestaurants =
+// Set will only allow unique values in it, so i'm going to pass it the ids of each object.
+// If the loop tries to add the same value again, it'll get ignored for free.
+      Array.from(new Set(globalRestaurants.map(a => a.id)))
+// With the array of ids I got on step 1, I run a map function on it...
+// and return the actual restaurants from the globalRestaurants array.
+      .map(id => {
+             return globalRestaurants.find(a => a.id === id)
+           })
+
+    console.log("before function: ", globalRestaurants)
+    console.log("after function: ",  uniqueRestaurants)
+
+      makeTempRestArray(uniqueRestaurants)
       });
+
 
       // RIGHT CLICK TO ADD A RESTAURANT
 
@@ -120,8 +274,6 @@ var markersArray = [];
         map.panTo(position);
     }
 
-
-
   } //END OF INITMAP
 
     var globalRestaurants;
@@ -139,16 +291,19 @@ var markersArray = [];
 
     function createListings(restData) {
 
+
+
       // clear restauraunts from listings
       document.getElementById('restaurants').innerHTML = "";
 
       restData.forEach((x, i) => {
 
-      var index = i + 1
+        var index = i + 1
 
-      addMarker({lat: x.lat, lng: x.long}, "red", x, index)
+        addMarker({lat: x.lat, lng: x.long}, "red", x, index)
 
         // 1. CREATE
+
 
         // make div
         var listing = document.createElement("div")
@@ -196,18 +351,18 @@ var markersArray = [];
             var numberOfReviews = document.createElement("span")
             numberOfReviews.setAttribute('class', 'number-of-reviews')
 
-          // listing-price
-          var listingPrice = document.createElement("span")
-          listingPrice.setAttribute('class', 'listing-price')
-
-          // bullet to go between price and cusine
-          var bulletPriceCusine = document.createElement("span")
-          bulletPriceCusine.innerHTML = "&bull;";
-          bulletPriceCusine.setAttribute('class', 'bullet')
-
-          // listing-cusine
-          var listingCusine = document.createElement("span")
-          listingCusine.setAttribute('class', 'listing-cusine')
+          // // listing-price
+          // var listingPrice = document.createElement("span")
+          // listingPrice.setAttribute('class', 'listing-price')
+          //
+          // // bullet to go between price and cusine
+          // var bulletPriceCusine = document.createElement("span")
+          // bulletPriceCusine.innerHTML = "&bull;";
+          // bulletPriceCusine.setAttribute('class', 'bullet')
+          //
+          // // listing-cusine
+          // var listingCusine = document.createElement("span")
+          // listingCusine.setAttribute('class', 'listing-cusine')
 
           // infowindow
           var restInfoWindow = document.createElement("div")
@@ -223,7 +378,7 @@ var markersArray = [];
             reviewAverage.append(stars, bulletReviews, numberOfReviews)
 
             // put divs into the listing-info
-            listingInfo.append(listingTitle, reviewAverage, listingPrice, bulletPriceCusine, listingCusine)
+            listingInfo.append(listingTitle, reviewAverage) // REMOVED: listingPrice, bulletPriceCusine, listingCusine
 
             // put everything inside the listing div
             listing.append(listingAvatar, listingInfo)
@@ -239,12 +394,19 @@ var markersArray = [];
     // create average of ratings
         // make average a global variable so it can be used as an argument in another function
 
-            // create count to use to calculate the average rating.
-            var count = 0;
-            for(var y = 0; y < x.ratings.length; y++) {
-            count += x.ratings[y].stars
-            }
-            x.average = count / x.ratings.length
+    function createAverage(restaurant) {
+      var count = 0;
+      for(var y = 0; y < restaurant.ratings.length; y++) {
+      count += restaurant.ratings[y].stars
+      }
+      restaurant.average = count / restaurant.ratings.length
+    }
+
+    if (x.ratings.length > 0) {
+      createAverage(x)
+    }
+
+
 
     // insert avatar
         picture.src = x.image
@@ -261,10 +423,10 @@ var markersArray = [];
         numberOfReviews.innerHTML = x.ratings.length + " reviews"
 
     // add price range here
-        listingPrice.innerHTML = x.priceRange
+        // listingPrice.innerHTML = x.priceRange
 
     // add cusine here
-        listingCusine.innerHTML = x.cusine
+        // listingCusine.innerHTML = x.cusine
 
 
     // helper functions:
@@ -296,12 +458,12 @@ var markersArray = [];
           modalNumberOfReviews.innerHTML = restaurant.ratings.length + " reviews"
 
       // priceRange
-          var modalPriceRange = document.getElementById('m-price')
-          modalPriceRange.innerHTML = restaurant.priceRange
+          // var modalPriceRange = document.getElementById('m-price')
+          // modalPriceRange.innerHTML = restaurant.priceRange
 
       // cusine
-          var modalCusine = document.getElementById('m-cusine')
-          modalCusine.innerHTML = restaurant.cusine
+          // var modalCusine = document.getElementById('m-cusine')
+          // modalCusine.innerHTML = restaurant.cusine
 
       // address
           var modalAddress = document.getElementById('m-address')
@@ -337,6 +499,7 @@ var markersArray = [];
 
         createReview(restaurant.ratings.length, restaurant)
 
+
     }
 
     function createReview(noOfReviews, restaurant) {
@@ -348,7 +511,7 @@ var markersArray = [];
         var userReview = document.createElement("div")
         userReview.setAttribute('class', 'row user-review')
         var user = document.createElement("div")
-        user.setAttribute('class', 'user col-3')
+        user.setAttribute('class', 'user col-3 user-photo-container')
         var review = document.createElement("div")
         review.setAttribute('class', 'review col-9')
         var name = document.createElement("div")
@@ -369,6 +532,7 @@ var markersArray = [];
 
         // 3. INSERT
 
+        user.innerHTML = `<img id="user-photo" src=${restaurant.ratings[x].user_photo} alt="">`
         reviewComment.innerHTML = restaurant.ratings[x].comment
 
         // stars
@@ -381,7 +545,6 @@ var markersArray = [];
     }
 
     function addReviewModalData(restaurant) {
-
         var label = document.getElementById('addReviewLabel')
         label.innerHTML = restaurant.restaurantName
       }
@@ -389,8 +552,8 @@ var markersArray = [];
     // your star filter
     function filterByAvgStars(restaurants, min, max) {
       return restaurants.filter(place => {
-        return place.averageRating >= min &&
-          place.averageRating <= max
+        return place.average >= min &&
+          place.average <= max
       })
     }
 
@@ -404,7 +567,7 @@ var markersArray = [];
       getRestaurants()  // fetch data
         .then(augmentRestaurantsData) // add averages to json data.
         .then(data => globalRestaurants = data) // add this data to a new variable.
-        .then(createListings); // create restaurant listings from this data.
+        .then(createListings) // create restaurant listings from this data.
     }
 
     function onAvgStarsChange(min, max) {
@@ -420,9 +583,13 @@ var markersArray = [];
         }
         // otherwise...
         else {
-          var filtered = filterByAvgStars(globalRestaurants, min, max) //create filtered data
+
+          var filtered = filterByAvgStars(tempRestArray, min, max) //create filtered data
+
           createListings(filtered); // render new list using this data
         }
+
+
       }
 
     function filterOnSubmit() {
@@ -430,15 +597,6 @@ var markersArray = [];
       var maxVal = document.getElementById('max')
       onAvgStarsChange(minVal.value, maxVal.value)
     }
-
-    // *** FETCH START ***
-    // fetch()
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log(data)
-      // })  //END OF JSON FETCH
-
-
 
 // handle location errors
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -453,8 +611,6 @@ var markersArray = [];
         function addMarker(latLng, color, listing, listNumber) {
 
           // markersArray = [];
-
-
 
           if (listing !== undefined) {
             let url = "http://maps.google.com/mapfiles/ms/icons/";
@@ -502,17 +658,6 @@ var markersArray = [];
           }
         }
 
-
-// get city and country of location
-//         fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=21.01906424814991,%20105.8671532571316&key=AIzaSyAFAWdSJ9-ChPm_9XKsXG2aLGPDKc3aVfc')
-//           .then(response => response.json())
-//           .then(data => {
-//             var cityCountry = document.getElementById('city_and_country')
-//             cityCountry.innerHTML = data.results[5].formatted_address
-//           })
-
-// handle data from add a review, and post it back to the reviews page
-
   document.addEventListener('DOMContentLoaded',function(){
 
     // ADD REVIEW
@@ -546,24 +691,25 @@ var markersArray = [];
       var restName = restModal.getAttribute('restaurant-name')
 
       // loop through and find the restaurant object that matches restName
+      var thisItemIndex;
       for (var i=0; i < globalRestaurants.length; i++) {
         if (globalRestaurants[i].restaurantName === restName) {
-          var currentRestaurant = globalRestaurants[i];
+          // push that to the restaurant object
+          thisItemIndex = i;
+          break;
         }
     }
+    globalRestaurants[thisItemIndex].ratings.unshift(newReview)
 
-      // push that to the restaurant object
-      currentRestaurant.ratings.push(newReview)
 
       // close up, and put form data back to default
-      $('#restModal').modal('hide')
+      //$('#restModal').modal('hide')
 
-      createListings(globalRestaurants)
+      createListings(globalRestaurants);
+      addModalData(globalRestaurants[thisItemIndex]);
     }
 
     // ADD RESTAURANT
-
-
 
     // when the 'add restaurant' button is clicked...
     document.getElementById('post-restaurant').onclick=function(){
@@ -579,7 +725,7 @@ var markersArray = [];
           break;
         }
       }
-      var cusineData = document.getElementById('addCusine').value
+      // var cusineData = document.getElementById('addCusine').value
       var currentLat = document.getElementById('addRestForm').getAttribute('data-lat')
       var currentLong = document.getElementById('addRestForm').getAttribute('data-long')
 
@@ -588,8 +734,8 @@ var markersArray = [];
         restaurantName: nameData,
         image: "https://media-cdn.tripadvisor.com/media/photo-s/0f/b7/d6/40/handmade-chips.jpg",
     		address: addressData,
-    		cusine: cusineData,
-    		priceRange: priceRange,
+    		cusine: "placeholder text",
+    		priceRange: "placeholder text",
         lat:  parseFloat(currentLat),
         long: parseFloat(currentLong),
     		ratings: [
@@ -614,9 +760,3 @@ var markersArray = [];
     }
 
   })
-
-// maybe add a function that refreshes the restaurant modal after adding a review.
-
-
-
-// create UML disgrams showing one particular problem

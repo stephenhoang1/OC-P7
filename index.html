@@ -18,6 +18,10 @@
 
 <body>
 
+<div id="test">
+  <img src="" alt="">
+</div>
+
   <!-- Jumbotron -->
   <div class="card card-image">
 
@@ -57,11 +61,11 @@
 
 
 
-                <div class="price-cusine">
+                <!-- <div class="price-cusine">
                   <span id="m-price"></span>
                   <span class="bullet">&bull;</span>
                   <span id="m-cusine"></span>
-                </div>
+                </div> -->
                 <div id="m-address" class="address-container py-3">
                 </div>
 
@@ -196,7 +200,7 @@
 
 
 
-            <div class="form-group">
+            <!-- <div class="form-group">
 
               <label for="#price-wrapper">Price Range</label>
               <div id="price-wrapper">
@@ -234,7 +238,7 @@
               </div>
 
 
-            </div>
+            </div> -->
 
           </form>
         </div>
@@ -247,9 +251,8 @@
   </div>
 
   <!-- / add a restaurant modal -->
-
   <div class="header">
-    <h1 class="text-center">Closest restaurants to you in Hanoi, Vietnam<span id="city_and_country"></span></h1>
+    <h1 class="text-center">Closest restaurants to you in <span id="city"></span>, <span id="country"></span></h1>
   </div>
 
   <div class="container-fluid">
@@ -316,9 +319,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="page-footer font-small unique-color-dark">
+    <footer class="page-footer font-small" style="background-color: #4436A3">
 
-      <div style="background-color: #6351ce;">
+      <div style="background-color: #FFD801;">
         <div class="container">
 
           <!-- Grid row-->
@@ -335,23 +338,23 @@
 
               <!-- Facebook -->
               <a class="fb-ic">
-                <i class="fa fa-facebook white-text mr-4"> </i>
+                <i class="fab fa-facebook mr-4"></i>
               </a>
               <!-- Twitter -->
               <a class="tw-ic">
-                <i class="fa fa-twitter white-text mr-4"> </i>
+                <i class="fab fa-twitter mr-4"> </i>
               </a>
               <!-- Google +-->
               <a class="gplus-ic">
-                <i class="fa fa-google-plus white-text mr-4"> </i>
+                <i class="fab fa-google-plus mr-4"> </i>
               </a>
               <!--Linkedin -->
               <a class="li-ic">
-                <i class="fa fa-linkedin white-text mr-4"> </i>
+                <i class="fab fa-linkedin mr-4"> </i>
               </a>
               <!--Instagram-->
               <a class="ins-ic">
-                <i class="fa fa-instagram white-text"> </i>
+                <i class="fab fa-instagram mr-4"> </i>
               </a>
 
             </div>
@@ -373,56 +376,17 @@
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
             <!-- Content -->
-            <h6 class="text-uppercase font-weight-bold">Company name</h6>
+            <h6 class="text-uppercase font-weight-bold">Edible</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit.</p>
+            <p>Hungry? Discover restaurants and reviews near you!</p>
 
             </div>
             <!-- Grid column -->
 
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-              <!-- Links -->
-              <h6 class="text-uppercase font-weight-bold">Products</h6>
-              <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-              <p>
-                <a href="#!">MDBootstrap</a>
-              </p>
-              <p>
-                <a href="#!">MDWordPress</a>
-              </p>
-              <p>
-                <a href="#!">BrandFlow</a>
-              </p>
-              <p>
-                <a href="#!">Bootstrap Angular</a>
-              </p>
-
-            </div>
-            <!-- Grid column -->
 
             <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-              <!-- Links -->
-              <h6 class="text-uppercase font-weight-bold">Website influences</h6>
-              <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-              <p>
-                <a href="#!">Yelp</a>
-              </p>
-              <p>
-                <a href="#!">TripAdvisor</a>
-              </p>
-              <p>
-                <a href="#!">Google Places</a>
-              </p>
-              <p>
-                <a href="#!">Help</a>
-              </p>
 
-            </div>
             <!-- Grid column -->
 
             <!-- Grid column -->
@@ -450,26 +414,19 @@
                 <!-- Footer Links -->
 
                 <!-- Copyright -->
-                <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                  <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+                <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                  <a href="https://www.coderlist.io/profile/stephenhoang">Stephen Hoang</a>
                 </div>
                 <!-- Copyright -->
 
               </footer>
 
 
-
-
-
-
-
-
-
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!-- GOOGLE MAPS -->
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYCjYphLuqFOStfAi-HJf8bV8wLncI6I4&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYCjYphLuqFOStfAi-HJf8bV8wLncI6I4&callback=initMap&libraries=places">
   </script>
 
 <!-- GOOGLE PLACES -->
