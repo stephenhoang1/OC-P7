@@ -1,26 +1,359 @@
+/* mobile */
+@media only screen and (max-width: 768px) {
+
+  /* Jumbotron */
+
+  body > div.card.card-image > div > img {
+    width: 70px;
+  }
+
+  /* logo */
+
+  body>.card {
+    padding: 40px;
+  }
+
+  body>div.card.card-image > div > i {
+    font-size: 40px;
+    color: white;
+  }
+
+  body > div.card.card-image > div > h1 {
+    font-size: 20px;
+  }
+
+  /* header */
+
+  .header {
+    margin: 5px;
+  }
+
+  .header>h1 {
+    font-size: 20px;
+  }
+
+  /* map */
+
+  .map-container {
+    /* display: none; */
+    border: none;
+    max-height: 300px;
+
+  }
+
+  /* listing */
+
+  #restaurants  {
+    /* display: block; */
+    overflow: hidden;
+    background-color: white;
+    /* max-height: 260px; */
+
+  }
+
+.header {
+  display: none;
+}
+
+  .listings {
+    border: 1px solid black;
+  }
+
+
+}
+
+
 .header {
   margin: 30px;
 }
 
-.container {
-  margin: 20px;
+.view-options {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.col-sm-7  {
-  border: solid black 1px;
+.logo>img {
+  width: 200px;
 }
 
 #map {
-  height: 60vh;
+  /* height: 60vh; */
+  /* position: sticky  */
+  height: 100%;
 }
 
-#restaurants {
-  overflow: scroll;
+.map-container {
+  height: 600px;
+  background-color: white;
 }
 
 .listing {
-  height: 90px;
-  border-bottom-style: ridge;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  /* height: 100px; */
+  border-top:1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listing-avatar {
+  max-width: 100px;
+  min-width: 50px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.listing-avatar>img {
+  /* border: 1px solid #ddd; */
+  border-radius: 4px;
+  height: 100px;
+  /* padding: 5px; */
+  /* width: inherit; */
+  object-fit: cover;
+  /* max-width: 100%; */
+  max-height: 100%;
+  min-width: 100px;
+}
+
+.listing-title {
+  font-weight: bold;
+}
+
+.listing-info {
+  flex: 1;
+  padding: 10px;
+}
+
+.infoWindow {
+  border: none;
+}
+
+.listing-address {
+  width: 100px;
+}
+
+
+.card {
+  padding: 50px;
+}
+
+/* logo */
+div.card.card-image > div > i {
+  font-size: 150px;
+  color: white;
+}
+
+.reviews {
+  display: flex;
+  flex-direction:column;
+  height:20px;
+
+}
+
+.review-avg {
+  display: flex;
+  /* flex-direction:column; */
+  height:20px;
+}
+
+
+
+.bullet {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.stars {
+    display: flex;
+}
+
+.reviews>p {
+  padding-left: 5px;
+}
+
+.input-group.md-form.form-sm.form-1 {
+    border: 2px solid white;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    margin: 0 auto
+}
+
+.card-image {
+  background-image: url(https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_large_assets/6b30e7f8206f/assets/img/home/hero_photos/atHzOuzY6J-kKdgKQnCDQQ.jpg);
+  background-size: cover;
+}
+
+.content {
+  width: 50%;
+  margin: auto;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logo>h1 {
+  color: white
+}
+
+.nav-link {
+  color: white;
+}
+
+body > div.card.card-image > div > div.input-group.md-form.form-sm.form-1.pl-0 > input {
+  color: black;
+  background-color: white
+}
+
+/* .modal-content * {
+  border: 1px solid black;
+} */
+
+.m-row-1 {
+  height: 350px;
+}
+
+.m-rest-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.m-row-2 {
+  height: inherit;
+  overflow: scroll;
+}
+
+.opening-times>p {
+  float: right;
+  padding-right: 30px;
+
+}
+
+.opening-times {
+  border-right: 1px solid black;
+}
+
+
+#reviews-heading {
+  margin:20px;
+  font-weight: bold;
+}
+
+#opening-times-heading {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+#m-rest-name {
+  font-weight: bold;
+}
+
+.modal-dialog {
+  height: auto; /* = 90% of the .modal-backdrop block = %90 of the screen */
+}
+.modal-content {
+  height: 100%; /* = 100% of the .modal-dialog block */
+}
+
+#modal-trigger {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.review>* {
+  padding: 5px;
+}
+
+.name {
+  font-size: 12px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-review {
+  padding: 10px;
+  border-bottom: 1px solid #e7dbdb;
+  border-length: 80%;
+}
+
+#address {
+  list-style: none;
+  padding: 0;
+}
+
+#review-button {
+  margin: 0
+}
+
+hr {
+    display: block;
+    margin-before: 0.5em;
+    margin-after: 0.5em;
+    margin-start: auto;
+    margin-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    border-top: 1px solid black;
+}
+
+/* .m-img-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;  */
+/* } */
+
+#m-img {
+  display: block;
+  max-width: 352px;
+  max-height: 304px;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+.address-container {
+  width:150px
+}
+
+.filter {
+ display: flex;
+}
+
+.add-review-modal {
+  background-color: red;
+  /* height: 500px; */
+}
+
+#price-wrapper {
+  margin-bottom: 15px;
+}
+
+#user-photo {
+  height: 75px;
+  width: 75px;
+}
+
+.user-photo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
