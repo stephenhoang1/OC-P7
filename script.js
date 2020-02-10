@@ -22,9 +22,9 @@ var tempRestArray = []
           infoWindow.setPosition(currentLocation);
           infoWindow.setContent('You are here');
           infoWindow.open(map);
-          var locationCenter = map.getCenter()
-          map.setCenter(locationCenter);
 
+          // var locationCenter = map.getCenter()
+          // map.setCenter(locationCenter);
 
 
 // START REVERSE GEOCODE TO GET THE CITY AND COUNTRY
@@ -446,7 +446,7 @@ const uniqueRestaurants =
     function addModalData(restaurant) {
       // image
           var modalImage = document.getElementById('m-img')
-          var streetViewImg = `https://maps.googleapis.com/maps/api/streetview?size=254x254&location=${restaurant.lat},${restaurant.long}&fov=90&heading=235&pitch=10&key=AIzaSyAFAWdSJ9-ChPm_9XKsXG2aLGPDKc3aVfc`
+          var streetViewImg = `https://maps.googleapis.com/maps/api/streetview?size=254x254&location=${restaurant.lat},${restaurant.long}&fov=90&heading=235&pitch=10&key=AIzaSyCUoFPJPMzcAgibNIR1Lgh7eQzfyRVn-Ns`
           modalImage.src = streetViewImg
 
       // name
