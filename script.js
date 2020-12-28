@@ -167,7 +167,7 @@ var mapCenter = map.getCenter()
               type: ['restaurant']
             };
 
-            // service = new google.maps.places.PlacesService(map)
+            service = new google.maps.places.PlacesService(map)
             service.nearbySearch(request, callback);
 
 
