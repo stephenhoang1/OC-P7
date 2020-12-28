@@ -23,8 +23,8 @@ var tempRestArray = []
           infoWindow.setContent('You are here');
           infoWindow.open(map);
 
-          // var locationCenter = map.getCenter()
-          // map.setCenter(locationCenter);
+          var locationCenter = map.getCenter()
+          map.setCenter(locationCenter);
 
 
 // START REVERSE GEOCODE TO GET THE CITY AND COUNTRY
