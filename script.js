@@ -157,8 +157,8 @@ var mapCenter = map.getCenter()
       google.maps.event.addListener(map, 'idle', function() {
 
       var mapCentertwo = map.getCenter()
-      // infoWindow.setPosition(mapCenter);
-      // infoWindow.setContent('You are here');
+      infoWindow.setPosition(mapCenter);
+      infoWindow.setContent('You are here');
 
       // nearby search
             var request = {
