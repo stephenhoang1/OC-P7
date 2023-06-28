@@ -7,16 +7,16 @@ var tempRestArray = [];
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: -34.397, lng: 150.644 },
-    zoom: 14,
+    zoom: 14
   });
   infoWindow = new google.maps.InfoWindow();
 
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.getCurrentPosition(function(position) {
       var currentLocation = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lng: position.coords.longitude
       };
 
       infoWindow.setPosition(currentLocation);
@@ -29,10 +29,7 @@ function initMap() {
       // START REVERSE GEOCODE TO GET THE CITY AND COUNTRY
       var geocoder = new google.maps.Geocoder();
 
-      geocoder.geocode({ location: currentLocation }, function (
-        results,
-        status
-      ) {
+      geocoder.geocode({ location: currentLocation }, function(results, status) {
         if (status === 'OK') {
           var city = document.getElementById('city');
           var country = document.getElementById('country');
@@ -51,48 +48,42 @@ function initMap() {
       var request = {
         location: mapCenter,
         radius: '1000',
-        type: ['restaurant'],
+        type: ['restaurant']
       };
 
       service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, callback);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
     });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
   }
-} // end of initMap
+}
 
-function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var x in results) {
-      var placesRequest = {
-        placeId: results[x].place_id,
-        fields: ['name', 'photo', 'vicinity', 'rating', 'geometry', 'review', 'price_level', 'place_id'],
-      };
-
-      service.getDetails(placesRequest, callback);
+// make temporary restaurant array to use to update listings when dragging map
+function makeTempRestArray(restData) {
+  tempRestArray = [];
+  for (var i = 0; i < restData.length; i++) {
+    if (map.getBounds().contains({ lat: restData[i].lat, lng: restData[i].long })) {
+      tempRestArray.push(restData[i]);
     }
   }
-}
-
-// ...rest of the code
-
-// your star filter
-function filterByAvgStars(restaurants, min, max) {
-  return restaurants.filter(place => {
-    return place.average >= min && place.average <= max;
-  });
-}
-
-// new cleaner fetch
-function getRestaurants() {
-  return fetch('restaurants.json').then(response => response.json());
+  createListings(tempRestArray);
 }
 
 function onInit() {
-  getRestaurants() // fetch data
-    .then(augmentRestaurantsData) // add averages to json data.
-    .then(data => (globalRestaurants = data)) // add this data to a new variable.
-    .then(createListings); // create restaurant listings from this data.
+  initMap(); // Call initMap function when the page loads
+  setTimeout(function() {
+    makeTempRestArray(globalRestaurants);
+  }, 4000);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  onInit();
+});
+
 
 function onAvgStarsChange(min, max) {
   if (!globalRestaurants) {
